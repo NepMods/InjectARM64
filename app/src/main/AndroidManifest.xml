@@ -17,8 +17,7 @@
         tools:targetApi="n">
         <activity
             android:name=".WelcomeActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/WelcomeTheme">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

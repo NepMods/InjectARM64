@@ -54,7 +54,6 @@ public class LauncherActivity extends Activity {
         }
         Drawable drawable = packageInfo.applicationInfo.loadIcon(BlackBoxCore.getPackageManager());
         setContentView(R.layout.activity_launcher);
-        findViewById(R.id.iv_icon).setBackgroundDrawable(drawable);
         new Thread(() -> BlackBoxCore.getBActivityManager().startActivity(launchIntent, userId)).start();
     }
 

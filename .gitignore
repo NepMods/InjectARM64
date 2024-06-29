@@ -86,3 +86,5 @@ lint/tmp/
 
 # mac
 *.DS_Store
+.gradle
+local.properties
