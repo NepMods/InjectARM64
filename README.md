@@ -52,7 +52,7 @@ Inject ARM-64 is designed to facilitate the injection of cheats into ARM-64 arch
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/nepmods/inject-arm64.git
+    [git clone https://github.com/nepmods/inject-arm64.git](https://github.com/NepMods/InjectARM64)
     ```
 2. Open In android studio
 3. Sync Project
