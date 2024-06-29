@@ -1,139 +1,112 @@
-![xx](assets/banner.png)
-### [English Version](README_EN.md)
+# Inject ARM-64
 
-# 虚拟引擎 · BlackBox
-> The only people who have anything to fear from free software are those whose products are worth even less. 
->
-> <p align="right">——David Emery</p>
+Inject ARM-64 is a Virtual-Space based Non-root Cheat injection project, developed by [Nepmods](https://github.com/nepmods).
 
-![](https://img.shields.io/badge/language-java-brightgreen.svg)
+## Table of Contents
 
-黑盒BlackBox，是一款虚拟引擎，可以在Android上克隆、运行虚拟应用，拥有免安装运行能力。黑盒可以掌控被运行的虚拟应用，做任何想做的事情。
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
+- [Contact](#contact)
 
-## 交流
-[Telegram](https://t.me/fvblackbox)
+## Overview
 
-## 支持
-暂不考虑4x，目前已兼容 5.0 ～ 12.0并跟进后续新系统。
+Inject ARM-64 is designed to facilitate the injection of cheats into ARM-64 architecture devices without the need for root access. By utilizing a virtual space, this tool ensures that cheats can be applied safely and effectively, providing an enhanced user experience for developers and gamers alike.
 
-如果条件允许，降级targetSdkVersion到28或以下可以获得更好的兼容性。
+## Features
 
-***稳定性未经大量测试，仅供学习交流，请勿用于其他用途***
+- **Non-root injection:** No root access is required to inject cheats.
+- **Virtual-space based:** Utilizes a virtual environment to ensure safe and effective cheat injection.
+- **ARM-64 support:** Specifically designed for ARM-64 architecture devices.
+- **User-friendly interface:** Easy to use with a simple and intuitive interface.
+- **Dynamic memory allocation:** Efficient use of memory to optimize performance.
+- **Secure:** Minimizes risks associated with cheat injections.
 
-## 编译版本下载
-稳定版与测试版下载
-- 稳定版 由管理员手动发布经过验证稳定后的版本。[下载地址](https://github.com/FBlackBox/BlackBox/releases)
-- 测试版 由机器自动编译最新的代码的版本，可体验最新体验也有可能存在问题。 [下载地址](https://github.com/AutoBlackBox/BlackBox/tags)
+## Limitations
 
-## 架构说明
-本项目区分32位与64位，目前是2个不同的app，如在Demo已安装列表内无法找到需要开启的app说明不支持，请编译其他的架构。
+- **Android Version:** Only supports Android 8-12
+- **ABI** Only supports ARM 64bit (arm64-v8a)
 
-## 如何使用
-### Step 1.初始化，在Application中加入以下代码初始化
+## Todo
+- **Upgrade for higher Android:** Support for android 13, 14
+- **Support for other abi:** Support for armeabi-v7a, x86, x86_64
 
-```java
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        try {
-            BlackBoxCore.get().doAttachBaseContext(base, new ClientConfiguration() {
-                @Override
-                public String getHostPackageName() {
-                    return base.getPackageName();
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+# Known issue
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        BlackBoxCore.get().doCreate();
-    }
-```
-
-### Step 2.安装应用至黑盒内
-```java
-    // 已安装的应用可以提供包名
-    BlackBoxCore.get().installPackageAsUser("com.tencent.mm", userId);
-    
-    // 未安装的应用可以提供路径
-    BlackBoxCore.get().installPackageAsUser(new File("/sdcard/com.tencent.mm.apk"), userId);
-```
-
-### Step 2.运行黑盒内的应用
-```java
-   BlackBoxCore.get().launchApk("com.tencent.mm", userId);
-```
-
-### 多开应用操作
-<img src="assets/multiw.gif" width="50%">
-
-### 相关API
-#### 获取黑盒内已安装的应用
-```java
-   // flgas与常规获取已安装应用保持一致即可
-   BlackBoxCore.get().getInstalledApplications(flags, userId);
-   
-   BlackBoxCore.get().getInstalledPackages(flags, userId);
-```
-
-#### 获取黑盒内的User信息
-```java
-   List<BUserInfo> users = BlackBoxCore.get().getUsers();
-```
-更多其他操作看BlackBoxCore函数名大概就知道了。
+- In ```BActivityThread``` at function ```handleBindApplication``` at line ```368```, Code ```application = BRLoadedApk.get(loadedApk).makeApplication(false, null);``` returns `null` at android 13, 14 that causes app to crash.
 
 
-#### Xposed相关
-- 已支持使用XP模块
-- Xposed已粗略过检测，[Xposed Checker](https://www.coolapk.com/apk/190247)、[XposedDetector](https://github.com/vvb2060/XposedDetector) 均无法检测
+## Requirements
+
+- ***Android Studio***
+- ***NDK as configured in build files***
+
+- ***SDK as configured in build files***
+
+## Installation
 
 
-## 如何参与开发？
-### 应用分2个模块
-- app模块，用户操作与UI模块
-- Bcore模块，此模块为BlackBox的核心模块，负责完成整个黑盒的调度。
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/nepmods/inject-arm64.git
+    ```
+2. Open In android studio
+3. Sync Project
+4. Build Project
+5. Customize
 
-如需要参与开发请直接pr就可以了，相关教程请Google或者看 [如何在 GitHub 提交第一个 pull request](https://chinese.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github/)
-### PR须知
-1. 中英文说明都可以，但是一定要详细说明问题
-2. 请遵从原项目的代码风格、设计模式，请勿个性化。
-3. PR不分大小，有问题随时欢迎提交。
+## Usage
 
-## 计划
- - 更多的Service API 虚拟化（目前许多是使用系统API，只有少数已实现）
- - 提供更多接口给开发者（虚拟定位、应用注入等）
+1. Launch the application
+2. Install game apk AS configured
+3. Follow the on-screen instructions to inject cheats into your desired application.
 
-## 赞助
-本项目为免费开源项目，日常维护耗费大量精力。如想加快进度或请作者喝杯咖啡。
+## Contributing
 
-- BTC: 3FCo9QtaSbGMhmZYzvL4XUoJUUxZeSdha4
-- USDT（TRC20）: TDzBj9eV1Cdmmj9xd5Y1YLsQqC8zVgi7yd
+We welcome contributions from the community! If you would like to contribute to Inject ARM-64, please follow these steps:
 
-## 感谢
-- [VirtualApp](https://github.com/asLody/VirtualApp)
-- [VirtualAPK](https://github.com/didi/VirtualAPK)
-- [BlackReflection](https://github.com/CodingGay/BlackReflection)
-- [FreeReflection](https://github.com/tiann/FreeReflection)
+1. Fork the repository.
+2. Create a new branch:
+    ```sh
+    git checkout -b feature-branch
+    ```
+3. Make your changes and commit them:
+    ```sh
+    git commit -m "Description of your changes"
+    ```
+4. Push to your branch:
+    ```sh
+    git push origin feature-branch
+    ```
+5. Open a pull request detailing your changes.
+
+## Credits
+
+This project uses various open-source libraries and resources. We would like to acknowledge and thank the developers of these projects:
+
+- [BCore](https://github.com/FBlackBox/BlackBox)
 - [Pine](https://github.com/canyie/pine)
+- [LGL mod menu 3.2](https://github.com/LGLTeam/Android-Mod-Menu)
 
-### License
 
-> ```
-> Copyright 2022 BlackBox
->
-> Licensed under the Apache License, Version 2.0 (the "License");
-> you may not use this file except in compliance with the License.
-> You may obtain a copy of the License at
->
->    http://www.apache.org/licenses/LICENSE-2.0
->
-> Unless required by applicable law or agreed to in writing, software
-> distributed under the License is distributed on an "AS IS" BASIS,
-> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-> See the License for the specific language governing permissions and
-> limitations under the License.
-> ```
+## License
+
+Inject ARM-64 is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Contact
+
+If you have any questions or need further assistance, feel free to reach out:
+
+- **Developer:** Nepmods
+- **Email:** [nepmods@proton.me](mailto:nepmods@proton.me)
+- **GitHub:** [Nepmods](https://github.com/nepmods)
+- **Telegram:** [Telegram](https://t.me/CheaterNeverDies)
+
+
+---
+
+Thank you for using Inject ARM-64! We hope you find it helpful and look forward to your contributions.

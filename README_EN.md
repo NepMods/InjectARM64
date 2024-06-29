@@ -1,4 +1,4 @@
-![xx](assets/banner.png)
+[xx](assets/banner.png)
 # Virtual Engine · BlackBox
 > The only people who have anything to fear from free software are those whose products are worth even less. 
 >
