@@ -15,7 +15,7 @@ Inject ARM-64 is a Virtual-Space based Non-root Cheat injection project, develop
 
 ## Overview
 
-Inject ARM-64 is designed to facilitate the injection of cheats into ARM-64 architecture devices without the need for root access. By utilizing a virtual space, this tool ensures that cheats can be applied safely and effectively, providing an enhanced user experience for developers and gamers alike.
+Inject ARM-64 is designed to facilitate the injection of cheats into ARM-64 / ARM-32 architecture devices without the need for root access. By utilizing a virtual space, this tool ensures that cheats can be applied safely and effectively, providing an enhanced user experience for developers and gamers alike.
 
 ## Features
 
@@ -25,19 +25,11 @@ Inject ARM-64 is designed to facilitate the injection of cheats into ARM-64 arch
 - **User-friendly interface:** Easy to use with a simple and intuitive interface.
 - **Dynamic memory allocation:** Efficient use of memory to optimize performance.
 - **Secure:** Minimizes risks associated with cheat injections.
-
+- **Support** Supports Android 14
 ## Limitations
 
 - **Android Version:** Only supports Android 8-12
 - **ABI** Only supports ARM 64bit (arm64-v8a)
-
-## Todo
-- **Upgrade for higher Android:** Support for android 13, 14
-- **Support for other abi:** Support for armeabi-v7a, x86, x86_64
-
-# Known issue
-
-- In ```BActivityThread``` at function ```handleBindApplication``` at line ```368```, Code ```application = BRLoadedApk.get(loadedApk).makeApplication(false, null);``` returns `null` at android 13, 14 that causes app to crash.
 
 
 ## Requirements
@@ -91,7 +83,8 @@ This project uses various open-source libraries and resources. We would like to 
 - [BCore](https://github.com/FBlackBox/BlackBox)
 - [Pine](https://github.com/canyie/pine)
 - [LGL mod menu 3.2](https://github.com/LGLTeam/Android-Mod-Menu)
-
+- Base Project:
+- [Android-Virtual-Inject](https://github.com/reveny/Android-Virtual-Inject)
 
 ## License
 
