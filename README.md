@@ -26,10 +26,6 @@ Inject ARM-64 is designed to facilitate the injection of cheats into ARM-64 / AR
 - **Dynamic memory allocation:** Efficient use of memory to optimize performance.
 - **Secure:** Minimizes risks associated with cheat injections.
 - **Support** Supports Android 14
-## Limitations
-
-- **Android Version:** Only supports Android 8-12
-- **ABI** Only supports ARM 64bit (arm64-v8a)
 
 
 ## Requirements
