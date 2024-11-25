@@ -42,11 +42,12 @@ void *hack_thread(void *) {
     } while (!isLibraryLoaded(targetLibName));
 
     LOGI("%s LOADED", targetLibName);
-    HOOK_LIB("libil2cpp.so","0x85C3C8", stopZ, _stopZ);
+
     return nullptr;
 }
 
 void Changes(int featNum, int value, bool boolean) {
+    LOGI("featNum: %d, value : %d, booolean: %d", featNum, value, boolean);
     switch (featNum) {
         case 2:
             isStop = boolean;
